@@ -15,9 +15,9 @@ const App = () => {
   }
 
   return (
-    <div className="App">
-      <button onClick={clickFunction}>Randomize Data</button>
-      <header className="App-header">
+    <div className="app">
+      <button onClick={clickFunction} className="button">Randomize Data</button>
+      <header className="app-header">
         <MyChart setItem={setItemFunction} initialData={data} /> 
       </header>
       Selected Item: {item}

@@ -4,3 +4,15 @@
     are not evaluating any CSS
     knowlegde.
  */
+
+ .app {
+    margin: 5px;
+ }
+
+ .button {
+    margin: 5px;
+ }
+
+ .app-header {
+    font-weight: bold;
+ }
