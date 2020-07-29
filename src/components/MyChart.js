@@ -2,8 +2,16 @@ import React, { useEffect, useState } from "react";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 
-const MyChart = ({ initialData = [], initialEvent, setItem }) => {
-  const [selectedEvent, setSelectedEvent] = useState(initialEvent);
+const MyChart = ({ initialData = [], setItem }) => {
+  const [selectedItem, setSelectedItem] = useState();
+
+  const getTitleText = () => {
+    if (initialData && initialData[initialData.length - 1] % 2 === 0) {
+     return "Something Else"
+    } 
+    
+    return "My Chart"
+  }
 
   let options = {
     title: {
@@ -12,7 +20,7 @@ const MyChart = ({ initialData = [], initialEvent, setItem }) => {
     If the last element is not even, then keep the title text 'My Chart'.
     It should be updated on every randomization/change on data.
     */
-      text: "My chart"
+      text: getTitleText()
     },
     series: [
       {
@@ -45,12 +53,12 @@ const MyChart = ({ initialData = [], initialEvent, setItem }) => {
   }, []);
 
   const sendData = (item) => {
-    setSelectedEvent(item.target.y);
+    setSelectedItem(item.target.y);
     setItem(item.target.y);    
  }
 
   return (
-    <div selectedEvent={selectedEvent} data={initialData}>
+    <div selected={selectedItem} data={initialData}>
       <HighchartsReact highcharts={Highcharts} options={options} />
     </div>
   );
