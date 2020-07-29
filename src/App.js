@@ -1,17 +1,28 @@
-import React from 'react';
-import './App.css';
-import C from "./components/MyChart";
+import React, { useState } from "react";
+import "./App.css";
+import MyChart from "./components/MyChart";
 
-function App() {
+const App = () => {
+  const [item, setItem] = useState();
+  const [data, setData] = useState();
+
+  const setItemFunction = (childData) => {
+    setItem(childData);
+  };
+
+  const clickFunction = () => {
+    setData(Array.from({length: 4}, () => Math.floor(Math.random() * 40)));
+  }
+
   return (
     <div className="App">
-      <button>Randomize Data</button>
+      <button onClick={clickFunction}>Randomize Data</button>
       <header className="App-header">
-        <C />
+        <MyChart setItem={setItemFunction} initialData={data} /> 
       </header>
-      Selected Item: ....
+      Selected Item: {item}
     </div>
   );
-}
+};
 
 export default App;
