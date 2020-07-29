@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 
 const MyChart = ({ initialData = [], setItem }) => {
-  const [selectedItem, setSelectedItem] = useState();
 
   const getTitleText = () => {
     if (initialData && initialData[initialData.length - 1] % 2 === 0) {
@@ -48,17 +47,12 @@ const MyChart = ({ initialData = [], setItem }) => {
     }
   };
 
-  useEffect(() => {
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   const sendData = (item) => {
-    setSelectedItem(item.target.y);
     setItem(item.target.y);    
  }
 
   return (
-    <div selected={selectedItem} data={initialData}>
+    <div data={initialData}>
       <HighchartsReact highcharts={Highcharts} options={options} />
     </div>
   );
